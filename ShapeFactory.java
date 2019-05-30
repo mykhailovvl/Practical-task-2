@@ -1,6 +1,3 @@
-/*
- * Decompiled with CFR 0.139.
- */
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.GradientPaint;
@@ -12,29 +9,53 @@ import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
+/**
+ * This class creates basic graphics primitives
+ *@author Mykhailov Vlad
+ *@version 1.0
+ */
 public class ShapeFactory {
+	/**
+	 * Provides definitions for objects that represent some form of geometric shape
+	 */
     public Shape shape;
+    /**
+     *  Defines a basic set of rendering attributes for the outlines of graphics primitives
+     *  
+     */
     public BasicStroke stroke = new BasicStroke(3.0f);
+    /**
+     *  Defines how color patterns can be generated for Graphics2D operations
+     */
     public Paint paint;
+    /**
+     * defines the width of the BasicStroke
+     */
     public int width = 25;
     public int height = 25;
 
     public ShapeFactory(int shape_type) {
+   
         switch (shape_type / 10) {
             case 1: {
+            	
                 this.shape = ShapeFactory.createStar(3, new Point(0, 0), (double)this.width / 2.0, (double)this.width / 2.0);
                 break;
             }
             case 3: {
                 this.shape = ShapeFactory.createStar(5, new Point(0, 0), (double)this.width / 2.0, (double)this.width / 4.0);
                 break;
-            }
+            }  
             case 5: {
                 this.shape = new Rectangle2D.Double((double)(-this.width) / 2.0, (double)(-this.height) / 2.0, this.width, this.height);
                 break;
             }
             case 7: {
-                GeneralPath path = new GeneralPath();
+            	/**
+            	 * Represents a geometric path constructed from straight lines, and quadratic and cubic (Bezier) curves.
+            	 */
+                GeneralPath path = new GeneralPath();        
+      
                 double tmp_height = Math.sqrt(2.0) / 2.0 * (double)this.height;
                 path.moveTo((double)(-this.width / 2), -tmp_height);
                 path.lineTo(0.0, -tmp_height);
